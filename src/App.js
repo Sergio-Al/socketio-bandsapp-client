@@ -37,10 +37,15 @@ function App() {
   // This is an custom event from our server
   useEffect(() => {
     socket.on("current-bands", (bands) => {
-      console.table(bands);
+      // console.table(bands);
       setBands(bands);
     });
   }, [socket]);
+
+  const vote = (id) => {
+    console.log(`votar app ${id}`);
+    socket.emit("vote-band", id);
+  };
 
   return (
     <div className="App">
@@ -59,7 +64,7 @@ function App() {
         <hr />
         <div className="row">
           <div className="col-8">
-            <BandList data={bands} />
+            <BandList data={bands} vote={vote} />
           </div>
           <div className="col-4">
             <BandAdd />
