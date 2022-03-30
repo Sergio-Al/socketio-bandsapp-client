@@ -10,7 +10,7 @@ const BandList = () => {
       setBands(bands);
     });
 
-    // this is for stop to listening 'current-bands'
+    // this is for stop to listening 'current-bands' if this component is destroyed
     return () => socket.off("current-bands");
   }, [socket]);
 
